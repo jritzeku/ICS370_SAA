@@ -4,6 +4,8 @@ use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +26,8 @@ Route::get('/about', [PagesController::class,'about']);
 Route::get('/contact', [PagesController::class,'contact']);
 
 Route::resource('appointments',AppointmentsController::class);
+
+Auth::routes();
+
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
