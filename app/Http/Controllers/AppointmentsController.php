@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class AppointmentsController extends Controller
@@ -13,7 +14,8 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
-        return 'appointments home page';
+       $appointments =  Appointment::all();
+        return view('appointments.index')->with('appointments', $appointments);
     }
 
     /**
@@ -46,6 +48,7 @@ class AppointmentsController extends Controller
     public function show($id)
     {
         //
+        return Appointment::find($id);
     }
 
     /**
