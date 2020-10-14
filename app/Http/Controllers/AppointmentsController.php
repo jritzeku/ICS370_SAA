@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class AppointmentsController extends Controller
 {
@@ -14,7 +16,9 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
-       $appointments =  Appointment::all();
+
+//        $appointments = Appointment::orderBy('title','asc')->get();
+        $appointments = Appointment::orderBy('title','asc')->paginate(1);
         return view('appointments.index')->with('appointments', $appointments);
     }
 
@@ -47,8 +51,10 @@ class AppointmentsController extends Controller
      */
     public function show($id)
     {
-        //
-        return Appointment::find($id);
+
+       // return Appointment::find($id);  //just returns json array of data
+        $appointment = Appointment::find($id);
+        return view('appointments.show')->with('appointment',$appointment);
     }
 
     /**
