@@ -51,7 +51,7 @@ class AppointmentsController extends Controller
         $appointment->date = $request->input('date');
         $appointment->time = $request->input('time');
         $appointment->body = $request->input('body');
-       // $appointment->user_id = auth()->user()->id;
+        $appointment->user_id = auth()->user()->id;
         $appointment->save();
 
         return redirect('/appointments')->with('success', 'Appointment has been Created!');
