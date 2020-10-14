@@ -25,5 +25,11 @@
                 <a class="nav-link" href={{url('/appointments')}}>Appointments</a>
             </li>
         </ul>
+
+
+
+        <ul class="nav navbar-nav ml-auto">
+            <li><a href ={{url('/appointments/create' )}}   >Create Post </a></li>
+        </ul>
     </div>
 </nav>
