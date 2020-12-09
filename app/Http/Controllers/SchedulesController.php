@@ -20,7 +20,6 @@ class SchedulesController extends Controller
     public function index()
     {
 
-
         //store all schedules in this collection
        // $schedules = Schedule::all();
 
@@ -98,7 +97,8 @@ class SchedulesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $schedule = Schedule::find($id);
+        return view('schedules.edit')->with('schedule',$schedule);
     }
 
     /**
@@ -110,7 +110,21 @@ class SchedulesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $this->validate($request, [
+            'title' =>'required'
+        ]);
+
+        //Create post
+        $schedule = Schedule::find($id);
+        $schedule ->title = $request->input('title');
+        $schedule ->day = $request->input('day');
+        $schedule ->time = $request->input('time');
+
+       // $appointment->user_id = auth()->user()->id;
+        $schedule->save();
+
+        return redirect('/advisor/schedules')->with('success', 'Schedule has been Edited!');
     }
 
     /**

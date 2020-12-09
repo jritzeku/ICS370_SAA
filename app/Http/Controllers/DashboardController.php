@@ -24,7 +24,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        //ensure we ONLY show appointments for authenticated user
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        return view('dashboard')->with('appointments', $user->appointments);
     }
 
     public function advisor()

@@ -13,7 +13,9 @@
         @foreach($schedules as $schedule)
             <div class ="card card-body bg-light">
                 <!--todo: does url start with advisor? -->
-                <h3> <a href = {{url("/schedules/{schedule->id}")}}> {{$schedule->title}}</a></h3>
+                {{--<h3> <a href = {{url("/appointments/{$appointment->id}")}}> {{$appointment->title}}</a></h3>--}}
+
+                <h3> <a href = {{url("/advisor/schedules/{$schedule->id}")}}> {{$schedule->title}}</a></h3>
                 <small>Created at:  {{$schedule->created_at}}</small>
             </div>
         @endforeach

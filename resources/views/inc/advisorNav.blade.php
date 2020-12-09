@@ -31,7 +31,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href={{url('/schedules')}}>Schedule</a>
+                    <a class="nav-link" href={{url('/advisor/schedules')}}>Schedule</a>
                 </li>
 
 

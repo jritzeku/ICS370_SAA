@@ -15,9 +15,17 @@
 
 
         <ul>
-            <li>Date: {{$appointment->date}} </li>
+            <li>Date: {{$appointment->day}} </li>
             <li>Time: {{$appointment->time}} </li>
-            <li>Comments: {{$appointment->body}} </li>
+            <li>Comments: {{$appointment->body}} </li><br>
+            <li>Meeting Location/Zoom link:
+                <br><br>
+
+                <a href="https://us04web.zoom.us/j/6989847786?pwd=OVlKZWg1U3JsSnhBRXAvTkkxTkdzZz09" target="_blank">  Join Zoom Meeting </a>
+
+                <br>
+                Meeting ID: 648 184 7286
+                Passcode: dfjdklfjdf</li>
         </ul>
         <hr>
         <a href="/appointments/{{$appointment->id}}/edit" class="btn btn-default">Edit</a>

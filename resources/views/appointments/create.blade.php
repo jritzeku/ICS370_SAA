@@ -8,22 +8,20 @@
         {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}
     </div>
 
+
+    {{--https://www.edureka.co/community/89705/how-gett-selected-values-from-multiple-select-form-laravel--}}
     <div class="form-group">
-        {{Form::label('date', 'Date')}}
-        {{Form::text('date', '', ['class' => 'form-control', 'placeholder' => 'Appointment Date'])}}
+        {{Form::label('day', 'Day')}}
+        {{Form::select('day', $availDays)}};
+
+
     </div>
+
 
     <div class="form-group">
         {{Form::label('time', 'Time')}}
         {{Form::text('time', '', ['class' => 'form-control', 'placeholder' => 'Appointment Time'])}}
     </div>
-
-    <div class="form-group">
-        {{Form::label('day', 'Day')}}
-        {{Form::text('day', '', ['class' => 'form-control', 'placeholder' => 'Select Day'])}}
-    </div>
-
-
     {{--<div class="form-group">--}}
 
         {{--{!! Form::Label('day', 'Day') !!}--}}

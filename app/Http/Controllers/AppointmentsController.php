@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,31 @@ class AppointmentsController extends Controller
      */
     public function create()
     {
-        return view('appointments/create');
+        $days = Schedule::find(1);
+
+        $availDays = array();
+
+        if($days->monday ==1){
+            array_push($availDays, 1);
+        }
+
+        if($days->tuesday ==1){
+            array_push($availDays, 2);
+        }
+
+        if($days->wednesday ==1){
+            array_push($availDays, 3);
+        }
+
+        if($days->thursday ==1){
+            array_push($availDays, 4);
+        }
+
+        if($days->friday ==1){
+            array_push($availDays, 5);
+        }
+
+        return view('appointments/create')->with('availDays', $availDays);
     }
 
     /**
@@ -51,10 +76,11 @@ class AppointmentsController extends Controller
         $appointment->title = $request->input('title');
 
         //TODO: schedule MUST be available!!!   ??drop down from teh schdule??
-        $appointment->date = $request->input('date');
+        $appointment->day = $request->input('day');
+
         $appointment->time = $request->input('time');
 
-        $appointment->time = $request->input('day');
+
 
         $appointment->body = $request->input('body');
         $appointment->user_id = auth()->user()->id;
@@ -89,8 +115,33 @@ class AppointmentsController extends Controller
      */
     public function edit($id)
     {
-        $appointment = App::find($id);
-        return view('appointments.edit')->with('appointment',$appointment);
+
+        $days = Schedule::find(1);
+        $availDays = array();
+
+        if($days->monday ==1){
+            array_push($availDays, 1);
+        }
+
+        if($days->tuesday ==1){
+            array_push($availDays, 2);
+        }
+
+        if($days->wednesday ==1){
+            array_push($availDays, 3);
+        }
+
+        if($days->thursday ==1){
+            array_push($availDays, 4);
+        }
+
+        if($days->friday ==1){
+            array_push($availDays, 5);
+        }
+
+        $appointment = Appointment::find($id);
+        //need to also pass another variable to view:  https://stackoverflow.com/questions/20110757/laravel-pass-more-than-one-variable-to-view
+        return view('appointments.edit')->with('appointment',$appointment)->with( 'availDays', $availDays);
     }
 
 
@@ -112,7 +163,7 @@ class AppointmentsController extends Controller
         //Create post
         $appointment = Appointment::find($id);
         $appointment->title = $request->input('title');
-        $appointment->date = $request->input('date');
+        $appointment->day = $request->input('day');
         $appointment->time = $request->input('time');
         $appointment->body = $request->input('body');
         $appointment->user_id = auth()->user()->id;

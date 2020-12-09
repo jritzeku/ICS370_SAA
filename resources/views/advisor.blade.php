@@ -15,13 +15,18 @@
                             </div>
                         @endif
 
-                        {{ __('You are logged in as advisor!') }}
+                        {{'Welcome back ' }}{{Auth::user()->name}}
+                            <br>
+                            Department: Computer Science
+
 
 
                         <br>
                         <br>
 
-                        <a class="btn btn-primary" href="{{url("/schedules/create")}}">Create a Schedule</a>
+                            {{--<a class="btn btn-primary" href="{{url("/appointments/create")}}">Create an Appointment</a>--}}
+
+                        <a class="btn btn-primary" href="{{url("/advisor/schedules/create")}}">Create a Schedule</a>
                     </div>
                 </div>
             </div>
