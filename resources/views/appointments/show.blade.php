@@ -19,9 +19,13 @@
             <li>Time: {{$appointment->time}} </li>
             <li>Comments: {{$appointment->body}} </li>
         </ul>
+        <hr>
+        <a href="/appointments/{{$appointment->id}}/edit" class="btn btn-default">Edit</a>
 
 
     </div>
+
+
 
 
 @endsection()

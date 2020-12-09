@@ -1,8 +1,6 @@
 <!--WORKS -->
 
 
-
-
 <!--todo -->
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
@@ -33,11 +31,10 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href={{url('/appointments')}}>Appointments</a>
+                    <a class="nav-link" href={{url('/schedules')}}>Schedule</a>
                 </li>
 
-                <!--todo: remove this for now, only want to show once logged in-->
-                {{--<li><a href ={{url('/appointments/create' )}}   >Create Appointment </a></li>--}}
+
 
             </ul>
 

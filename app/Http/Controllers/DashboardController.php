@@ -26,5 +26,10 @@ class DashboardController extends Controller
     {
         return view('dashboard');
     }
+
+    public function advisor()
+    {
+        return view('advisor');
+    }
 }
 

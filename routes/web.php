@@ -21,13 +21,53 @@ use Illuminate\Support\Facades\Auth;
     return view('welcome');
 });*/
 
+Auth::routes();
+
+Route::group(['middleware'=> ['auth']], function() {
+
+    Route::group(['middleware'=>['advisor']], function(){
+        Route::get('/advisor', [App\Http\Controllers\DashboardController::class, 'advisor'])->name('advisor');
+    });
+
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+});
+
+
 Route::get('/', [PagesController::class,'index']);
 Route::get('/about', [PagesController::class,'about']);
 Route::get('/contact', [PagesController::class,'contact']);
 
 Route::resource('appointments',AppointmentsController::class);
 
-Auth::routes();
+
+/*
+
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+//todo:
+//Route::get('/user','DemoController@userDemo')->name('user');    //todo: 'user' page IS the dashboard...
+//Route::get('/admin','DemoController@adminDemo')->name('admin'); //todo: no path this yet!
+
+//todo: user
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+//todo: admin
+Route::get('/admin', [App\Http\Controllers\DashboardController::class, 'admin'])->name('admin');
+
+*/
+
+
+//
+//Route::group(['middleware'=> ['auth']], function() {
+//    Route::get('/user', 'DemoController@userDemo')->name('user');
+//
+//    Route::group(['middleware'=>['admin']], function(){
+//        Route::get('/admin', 'DemoController@adminDemo')->name('admin');
+//    });
+//});
+//
+
+
+
+
 

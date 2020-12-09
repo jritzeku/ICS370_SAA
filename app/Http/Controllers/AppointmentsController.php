@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
 
@@ -56,7 +57,6 @@ class AppointmentsController extends Controller
 
         return redirect('/appointments')->with('success', 'Appointment has been Created!');
 
-
     }
 
     /**
@@ -81,8 +81,10 @@ class AppointmentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $appointment = App::find($id);
+        return view('appointments.edit')->with('appointment',$appointment);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -94,6 +96,22 @@ class AppointmentsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'title' =>'required',
+            'body' => 'required'
+        ]);
+
+        //Create post
+        $appointment = Appointment::find($id);
+        $appointment->title = $request->input('title');
+        $appointment->date = $request->input('date');
+        $appointment->time = $request->input('time');
+        $appointment->body = $request->input('body');
+        $appointment->user_id = auth()->user()->id;
+        $appointment->save();
+
+        return redirect('/appointments')->with('success', 'Appointment has been Edited!');
+
     }
 
     /**

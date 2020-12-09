@@ -1,6 +1,3 @@
-
-
-
 @extends('layouts.app')
 
 @section('content')
@@ -11,7 +8,7 @@
         <br>
         <br>
 
-        Email: saaHelp@gmail.com
+        Email: advisingSchedulerSystemHelp@gmail.com
         <br>
         Phone: 111-111-1111
     </p>
