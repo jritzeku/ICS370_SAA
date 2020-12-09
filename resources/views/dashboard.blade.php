@@ -18,17 +18,19 @@
 
                     <br>
                     <br>
+                        <h1>Student Profile</h1><hr>
 
+                        <h5>StudentID: {{Auth::user()->id}} </h5>
+                        <h5>Name: {{Auth::user()->name}}</h5>
+                        <h5>Major: Undeclared </h5><br><br>
 
-                        NAME: TOM <br>
-
-                        STUDENT ID: 324324<br>
 
                         RESUME: (not uploaded)<br>
+                        <br>
 
-                        <a class="btn btn-primary" href="{{url("/appointments/create")}}">Upload Reums</a>
+                        <a class="btn btn-primary" href="{{url("/schedules/create")}}">Upload Reums</a>
                         <br><br>
-                    <a class="btn btn-primary" href="{{url("/appointments/create")}}">Create a Post</a>
+                    <a class="btn btn-primary" href="{{url("/appointments/create")}}">Create Appointment</a>
                 </div>
             </div>
         </div>

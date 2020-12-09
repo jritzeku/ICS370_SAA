@@ -37,7 +37,7 @@
                 </li>
 
                 <!--todo: remove this for now, only want to show once logged in-->
-                {{--<li><a href ={{url('/appointments/create' )}}   >Create Appointment </a></li>--}}
+                {{--<li><a href ={{url('/schedules/create' )}}   >Create Appointment </a></li>--}}
 
             </ul>
 

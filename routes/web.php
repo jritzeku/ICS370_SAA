@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\SchedulesController;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +39,9 @@ Route::get('/about', [PagesController::class,'about']);
 Route::get('/contact', [PagesController::class,'contact']);
 
 Route::resource('appointments',AppointmentsController::class);
+
+
+Route::resource('advisor/schedules',SchedulesController::class);
 
 
 /*

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Create Apointment</h1>
+    <h1>Create Appointment </h1>
     {!! Form::open(['action' => 'App\Http\Controllers\AppointmentsController@store', 'method' => 'POST' , 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group">
         {{Form::label('title', 'Title')}}
@@ -17,6 +17,22 @@
         {{Form::label('time', 'Time')}}
         {{Form::text('time', '', ['class' => 'form-control', 'placeholder' => 'Appointment Time'])}}
     </div>
+
+    <div class="form-group">
+        {{Form::label('day', 'Day')}}
+        {{Form::text('day', '', ['class' => 'form-control', 'placeholder' => 'Select Day'])}}
+    </div>
+
+
+    {{--<div class="form-group">--}}
+
+        {{--{!! Form::Label('day', 'Day') !!}--}}
+
+        {{--{!! Form::select('product_id', $products, $selectedID, ['class' => 'form-control']) !!}--}}
+
+
+    {{--</div>--}}
+
 
     <div class="form-group">
         {{Form::label('body', 'Body')}}

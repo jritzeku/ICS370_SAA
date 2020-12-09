@@ -18,7 +18,7 @@ class AppointmentsController extends Controller
     public function index()
     {
 
-//        $appointments = Appointment::orderBy('title','asc')->get();
+        //$appointments = Appointment::orderBy('title','asc')->get();
         $appointments = Appointment::orderBy('created_at','asc')->paginate(1);
         return view('appointments.index')->with('appointments', $appointments);
     }
@@ -49,10 +49,18 @@ class AppointmentsController extends Controller
         //Create post
         $appointment = new Appointment;
         $appointment->title = $request->input('title');
+
+        //TODO: schedule MUST be available!!!   ??drop down from teh schdule??
         $appointment->date = $request->input('date');
         $appointment->time = $request->input('time');
+
+        $appointment->time = $request->input('day');
+
         $appointment->body = $request->input('body');
         $appointment->user_id = auth()->user()->id;
+
+
+
         $appointment->save();
 
         return redirect('/appointments')->with('success', 'Appointment has been Created!');
@@ -95,7 +103,7 @@ class AppointmentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
         $this->validate($request, [
             'title' =>'required',
             'body' => 'required'

@@ -21,7 +21,7 @@
                         <br>
                         <br>
 
-                        <a class="btn btn-primary" href="{{url("/appointments/create")}}">Create a Schedule</a>
+                        <a class="btn btn-primary" href="{{url("/schedules/create")}}">Create a Schedule</a>
                     </div>
                 </div>
             </div>
