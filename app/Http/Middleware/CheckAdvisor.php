@@ -24,7 +24,7 @@ class CheckAdvisor
         if(!$userRoles->contains('advisor')){
           //  return redirect('/home'); //todo: used in multiauth roles tutorial but we dont have this path!
            // dd($userRoles);
-            return redirect('/');
+            return redirect('/dashboard');
         }//todo: ???
 
 //        dd($userRoles);

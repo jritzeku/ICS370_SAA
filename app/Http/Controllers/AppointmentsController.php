@@ -11,6 +11,18 @@ use Illuminate\Support\Facades\DB;
 
 class AppointmentsController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth',['except' => ['index','show']]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -31,28 +43,29 @@ class AppointmentsController extends Controller
      */
     public function create()
     {
+
         $days = Schedule::find(1);
 
         $availDays = array();
 
         if($days->monday ==1){
-            array_push($availDays, 1);
+            array_push($availDays, 0);
         }
 
         if($days->tuesday ==1){
-            array_push($availDays, 2);
+            array_push($availDays, 1);
         }
 
         if($days->wednesday ==1){
-            array_push($availDays, 3);
+            array_push($availDays, 2);
         }
 
         if($days->thursday ==1){
-            array_push($availDays, 4);
+            array_push($availDays, 3);
         }
 
         if($days->friday ==1){
-            array_push($availDays, 5);
+            array_push($availDays, 4);
         }
 
         return view('appointments/create')->with('availDays', $availDays);
@@ -80,12 +93,37 @@ class AppointmentsController extends Controller
 
         $appointment->time = $request->input('time');
 
-
-
         $appointment->body = $request->input('body');
         $appointment->user_id = auth()->user()->id;
 
 
+        //todo: UPDATE schedule of advisor
+
+        $schedule = Schedule::find(1);
+
+        if($appointment->day ==0){
+            $schedule->monday = 0;
+        }
+
+        if($appointment->day ==1){
+            $schedule->tuesday = 0;
+        }
+
+        if($appointment->day ==2){
+            $schedule->wednesday = 0;
+        }
+
+        if($appointment->day ==3){
+            $schedule->thursday = 0;
+        }
+
+        if($appointment->day ==0){
+            $schedule->friday= 0;
+        }
+
+        $schedule->save();
+
+        //dd($appointment->day);
 
         $appointment->save();
 
@@ -117,26 +155,28 @@ class AppointmentsController extends Controller
     {
 
         $days = Schedule::find(1);
+
+
         $availDays = array();
 
         if($days->monday ==1){
-            array_push($availDays, 1);
+            array_push($availDays, 0);
         }
 
         if($days->tuesday ==1){
-            array_push($availDays, 2);
+            array_push($availDays, 1);
         }
 
         if($days->wednesday ==1){
-            array_push($availDays, 3);
+            array_push($availDays, 2);
         }
 
         if($days->thursday ==1){
-            array_push($availDays, 4);
+            array_push($availDays, 3);
         }
 
         if($days->friday ==1){
-            array_push($availDays, 5);
+            array_push($availDays, 4);
         }
 
         $appointment = Appointment::find($id);
@@ -163,14 +203,13 @@ class AppointmentsController extends Controller
         //Create post
         $appointment = Appointment::find($id);
         $appointment->title = $request->input('title');
-        $appointment->day = $request->input('day');
+        $appointment->day = $request->input('day') + 1;
         $appointment->time = $request->input('time');
         $appointment->body = $request->input('body');
         $appointment->user_id = auth()->user()->id;
         $appointment->save();
 
         return redirect('/appointments')->with('success', 'Appointment has been Edited!');
-
     }
 
     /**
@@ -181,6 +220,15 @@ class AppointmentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+//        $appointment = Appointment::find($id);
+//
+////        //Check for correct user
+////        if(auth()->user()->id !== $appointment ->user_id){
+////            return redirect('/appointments')->with('error','Unauthorized Page!');
+////        }
+//
+//        $appointment ->delete();
+//        return redirect('/appointments')->with('success', 'Appointment Removed!' );
     }
 }

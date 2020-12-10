@@ -3,6 +3,10 @@
 use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\SchedulesController;
+use App\Http\Controllers\UploadController;
+use Illuminate\Http\Request;
+
+
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +36,20 @@ Route::group(['middleware'=> ['auth']], function() {
 
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 });
+
+//Route::post('/upload', function(){
+//    dd(  Request()->all()   );
+//});
+//
+
+
+//Route::post('/upload', function(Request $request){
+//     dd('dfd');
+//});
+
+Route::get('/upload',[UploadController::class,'uploadForm']);
+Route::post('/upload',[UploadController::class,'uploadFile'])->name('uploadfile');
+
 
 
 Route::get('/', [PagesController::class,'index']);

@@ -23,7 +23,15 @@
 
 
 
-    <a href="/schedules/{{$schedule->id}}/edit" class="btn btn-default">Edit</a>
+
+
+    {{--<td><a class ="btn btn-outline-dark" href= {{url("/appointments/{$appointment->id}/edit")}} >Edit </a></td>--}}
+    {{----}}
+
+    <a class ="btn btn-outline-dark" href= {{url("/schedules/{$schedule->id}/edit")}} >Edit </a>
+
+    {{----}}
+    {{--<a href="/schedules/{{$schedule->id}}/edit" class="btn btn-default">Edittt</a>--}}
 
 
     {{--@if(count($schedules) > 0)--}}

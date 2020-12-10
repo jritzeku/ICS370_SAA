@@ -16,7 +16,6 @@ class SchedulesController extends Controller
 
 
 
-
     public function index()
     {
 
@@ -67,7 +66,8 @@ class SchedulesController extends Controller
         $schedule->friday = $request->input('friday');
 
 
-        //  $appointment->user_id = auth()->user()->id;
+        $schedule->user_id = auth()->user()->id;
+
         $schedule->save();
 
         return redirect('/advisor/schedules')->with('success', 'Schedule has been Created!');

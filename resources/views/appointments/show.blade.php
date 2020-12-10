@@ -9,11 +9,6 @@
 
     <div>
 
-        {{--Date: {{$appointment->date}} <br>--}}
-        {{--Time: {{$appointment->time}}  <br> <br>--}}
-        {{--Appointment Comments: <br> {{$appointment->body}}--}}
-
-
         <ul>
             <li>Date: {{$appointment->day}} </li>
             <li>Time: {{$appointment->time}} </li>
@@ -28,7 +23,26 @@
                 Passcode: dfjdklfjdf</li>
         </ul>
         <hr>
-        <a href="/appointments/{{$appointment->id}}/edit" class="btn btn-default">Edit</a>
+        <td><a class ="btn btn-outline-dark" href= {{url("/appointments/{$appointment->id}/edit")}} >Edit </a></td>
+
+        {{--{!!Form::open(['action' => ['App\Http\Controllers\AppointmentController@destroy', $appointment->id], 'method' => 'DELETE', 'class'  => 'float-right' ])!!}--}}
+        {{--{{Form::hidden('_method', 'DELETE')}}--}}
+        {{--{{Form::submit('Delete', ['class' => 'btn btn-danger'])}}--}}
+        {{--{!!Form::close() !!}--}}
+
+
+        {{--@if(!Auth::guest())--}}
+        {{--@if(Auth::user()->id == $appointment->user_id)--}}
+        {{--<a class="btn btn-secondary" href= {{url("/appointments/{$appointment->id}/edit")}} >Edit</a>--}}
+
+        {{--{!!Form::open(['action' => ['App\Http\Controllers\AppointmentController@destroy', $appointment->id], 'method' => 'DELETE', 'class'  => 'float-right' ])!!}--}}
+        {{--{{Form::hidden('_method', 'DELETE')}}--}}
+        {{--{{Form::submit('Delete', ['class' => 'btn btn-danger'])}}--}}
+        {{--{!!Form::close() !!}--}}
+
+        {{--@endif--}}
+        {{--@endif--}}
+
 
 
     </div>

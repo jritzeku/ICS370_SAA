@@ -32,7 +32,10 @@ class DashboardController extends Controller
 
     public function advisor()
     {
-        return view('advisor');
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+
+        return view('advisor')->with('schedules', $user->schedules);;
     }
 }
 

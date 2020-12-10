@@ -47,11 +47,10 @@ class User extends Authenticatable
     }
 
 
-//    public function schedules(){
-//
-//        return $this->hasOne('App\Models\Schedule');
-//    }
+    public function schedules(){
 
+        return $this->hasOne('App\Models\Schedule');//todo: ?
+    }
 
 
 

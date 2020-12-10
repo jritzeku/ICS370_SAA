@@ -1,49 +1,13 @@
-{{--@extends('layouts.app')--}}
 
-{{--@section('content')--}}
-{{--<div class="container">--}}
-    {{--<div class="row justify-content-center">--}}
-        {{--<div class="col-md-8">--}}
-            {{--<div class="card">--}}
-                {{--<div class="card-header">{{ __('Dashboard') }}</div>--}}
+ @extends('layouts.app')
 
-                {{--<div class="card-body">--}}
-                    {{--@if (session('status'))--}}
-                        {{--<div class="alert alert-success" role="alert">--}}
-                            {{--{{ session('status') }}--}}
-                        {{--</div>--}}
-                    {{--@endif--}}
-
-                    {{--{{ __('You are logged in!') }}--}}
-
-                    {{--<br>--}}
-                    {{--<br>--}}
-                        {{--<h1>Student Profile</h1><hr>--}}
-
-                        {{--<h5>StudentID: {{Auth::user()->id}} </h5>--}}
-                        {{--<h5>Name: {{Auth::user()->name}}</h5>--}}
-                        {{--<h5>Major: Undeclared </h5><br><br>--}}
-
-
-                        {{--RESUME: (not uploaded)<br>--}}
-                        {{--<br>--}}
-
-                        {{--<a class="btn btn-primary" href="{{url("/schedules/create")}}">Upload Reums</a>--}}
-                        {{--<br><br>--}}
-                    {{--<a class="btn btn-primary" href="{{url("/appointments/create")}}">Create Appointment</a>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-{{--</div>--}}
-{{--@endsection--}}
-
-
-
-
-@extends('layouts.app')
 
 @section('content')
+
+
+    @if (Auth::user()->id==2)
+        <a class="btn btn-secondary float-md-right" href="{{url("/advisor")}}">Go to Advisor Page</a>
+    @endif
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -57,25 +21,34 @@
                             </div>
                         @endif
 
-
                             <br>
                             <br>
 
-                            <h1>Student Profile</h1><hr>
 
-                            <h5>StudentID: {{Auth::user()->id}} </h5>
+
+                            <h1>Profile</h1><hr>
+
+                            <h5>ID: {{Auth::user()->id}} </h5>
                             <h5>Name: {{Auth::user()->name}}</h5>
-                            <h5>Major: Undeclared </h5><br><br>
 
 
-                            RESUME: (not uploaded)<br>
-                            <br>
+                            <p>Upload Documents</p>
+
+                        <br>
+
+
+                            <div class ="card-body">
+                                <form action="" method="post">
+                                    @csrf
+                                    <input type="file" name="image" />
+                                    <input type="submit" value="Upload" />
+
+                                </form>
+                            </div>
+
 
 
                         <br>
-                        <br>
-
-
 
                         <hr>
 
@@ -118,6 +91,8 @@
             </div>
         </div>
     </div>
+
+
 @endsection
 
 

@@ -12,7 +12,7 @@
     {{--https://www.edureka.co/community/89705/how-gett-selected-values-from-multiple-select-form-laravel--}}
     <div class="form-group">
         {{Form::label('day', 'Day')}}
-        {{Form::select('day', $availDays)}};
+        {{Form::select('day', $availDays) }};
 
 
     </div>
